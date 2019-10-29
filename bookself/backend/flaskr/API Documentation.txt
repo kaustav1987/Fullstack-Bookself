@@ -1,0 +1,86 @@
+Introduction: This App is used to main the bookself. We have various methods to manipulate(add, edit, delete) the bookself.
+
+Getting Started
+Base URL: At present this app can be run locally. It is not hosted as a base URL.
+API Keys /Authentication : This App does not require Authentication or API keys as of now.
+
+Errors:
+Errors are send as json object in the following format:
+
+{
+          "success": False,
+          "error": 404,
+          "message": "Resource Not found"
+}
+
+The API will return three error  types when requests fail:
+
+400: Bad Request
+404: Resource Not found
+405: Method not allowed
+422: Unprocessable
+
+Endpoint Library:
+
+GET /books
+Retrieve a list of books objects,
+success value, total number of books
+
+Results are paginated in group of 8. Include a request agrument to choose the page number starting from 1
+
+Sample:
+ curl http://127.0.0.1:5000/books
+ 
+ Output:
+   "books": [
+    {
+      "author": "Neil Gaiman",
+      "id": 1,
+      "rating": 4,
+      "title": "Neverwhere"
+    },
+    {
+      "author": "J K Rowling",
+      "id": 2,
+      "rating": 3,
+      "title": "Harry Potter"
+    },
+    {
+      "author": "Chetan Bhagat",
+      "id": 3,
+      "rating": 4,
+      "title": "2 States"
+    },
+    {
+      "author": "Chetan Bhagat",
+      "id": 4,
+      "rating": 5,
+      "title": "Revolution 2020"
+    }
+  ],
+  "success": true,
+  "total_books": 4
+}
+
+
+POST /books
+
+General: Creates a new book using the submitted title, author and rating. Returns the id of the created book, success value, total books, and book list based on current page number to update the frontend.
+
+Sample:
+curl http://127.0.0.1:5000/books?page=3 -X POST -H "Content-Type: application/json" -d '{"title":"Neverwhere", "author":"Neil Gaiman", "rating":"5"}'
+ 
+ Output:
+ {
+"books": [
+  {
+    "author": "Neil Gaiman",
+    "id": 24,
+    "rating": 5,
+    "title": "Neverwhere"
+  }
+],
+"created": 24,
+"success": true,
+"total_books": 17
+}
