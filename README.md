@@ -74,9 +74,6 @@ All tests are kept in that file and should be maintained as updates are made to 
 
 ## Deployment N/A
 
-## Authors
-Yours truly, Coach Caryn 
-
 ## Acknowledgements 
 
 
